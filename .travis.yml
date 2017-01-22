@@ -1,0 +1,19 @@
+language: java
+jdk:
+  - oraclejdk8
+before_install:
+ - nvm install 0.12
+ - nvm use 0.12
+ - npm install selenium-webdriver
+ - npm install chromedriver
+ - npm install mocha
+ - npm install chai
+ - cd '/home/travis/build/YHE54/TestHelloWorld/caMicroscopeTestSuite'
+ - npm install
+
+script:
+ - wget "https://raw.githubusercontent.com/YHE54/TestHelloWorld/master/caMicroscopeTestSuite/selenium-server-standalone-3.0.0-beta4.jar"
+ - java -jar 'selenium-server-standalone-3.0.0-beta4.jar' &
+ - wget "https://raw.githubusercontent.com/YHE54/TestHelloWorld/master/caMicroscopeTestSuite/chromedriver"
+ - ./chromedriver &
+ - ./node_modules/webdriverio/bin/wdio wdio.conf.js
